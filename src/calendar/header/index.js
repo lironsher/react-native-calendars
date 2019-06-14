@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import { ActivityIndicator } from 'react-native';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import React, {Component} from 'react';
+import {ActivityIndicator} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import XDate from 'xdate';
 import PropTypes from 'prop-types';
 import styleConstructor from './style';
-import { weekDayNames } from '../../dateutils';
-import {
-  CHANGE_MONTH_LEFT_ARROW,
-  CHANGE_MONTH_RIGHT_ARROW
-} from '../../testIDs';
+import {weekDayNames} from '../../dateutils';
+import {CHANGE_MONTH_LEFT_ARROW, CHANGE_MONTH_RIGHT_ARROW} from '../../testIDs';
+
 
 class CalendarHeader extends Component {
   static propTypes = {
@@ -19,7 +17,6 @@ class CalendarHeader extends Component {
     showIndicator: PropTypes.bool,
     firstDay: PropTypes.number,
     renderArrow: PropTypes.func,
-    monthComponent: PropTypes.func,
     hideDayNames: PropTypes.bool,
     weekNumbers: PropTypes.bool,
     onPressArrowLeft: PropTypes.func,
@@ -27,7 +24,7 @@ class CalendarHeader extends Component {
   };
 
   static defaultProps = {
-    monthFormat: 'MMMM yyyy',
+    monthFormat: 'MMMM yyyy'
   };
 
   constructor(props) {
@@ -48,10 +45,7 @@ class CalendarHeader extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (
-      nextProps.month.toString('yyyy MM') !==
-      this.props.month.toString('yyyy MM')
-    ) {
+    if (nextProps.month.toString('yyyy MM') !== this.props.month.toString('yyyy MM')) {
       return true;
     }
     if (nextProps.showIndicator !== this.props.showIndicator) {
@@ -65,16 +59,16 @@ class CalendarHeader extends Component {
 
   onPressLeft() {
     const {onPressArrowLeft} = this.props;
-    if(typeof onPressArrowLeft === 'function') {
-      return onPressArrowLeft(this.substractMonth);
+    if (typeof onPressArrowLeft === 'function') {
+      return onPressArrowLeft(this.substractMonth, this.props.month);
     }
     return this.substractMonth();
   }
 
   onPressRight() {
     const {onPressArrowRight} = this.props;
-    if(typeof onPressArrowRight === 'function') {
-      return onPressArrowRight(this.addMonth);
+    if (typeof onPressArrowRight === 'function') {
+      return onPressArrowRight(this.addMonth, this.props.month);
     }
     return this.addMonth();
   }
@@ -83,11 +77,7 @@ class CalendarHeader extends Component {
     let leftArrow = <View />;
     let rightArrow = <View />;
     let weekDaysNames = weekDayNames(this.props.firstDay);
-    let monthComponent = (
-      <Text allowFontScaling={false} style={this.style.monthText} accessibilityTraits='header'>
-        {this.props.month.toString(this.props.monthFormat)}
-      </Text>
-    );
+
     if (!this.props.hideArrows) {
       leftArrow = (
         <TouchableOpacity
@@ -120,19 +110,20 @@ class CalendarHeader extends Component {
         </TouchableOpacity>
       );
     }
+
     let indicator;
     if (this.props.showIndicator) {
-      indicator = <ActivityIndicator />;
+      indicator = <ActivityIndicator color={this.props.theme && this.props.theme.indicatorColor}/>;
     }
-    if (this.props.monthComponent) {
-      monthComponent = this.props.monthComponent(this.props.month, this.props.monthFormat);
-    }
+
     return (
-      <View>
+      <View style={this.props.style}>
         <View style={this.style.header}>
           {leftArrow}
           <View style={{ flexDirection: 'row' }}>
-            {monthComponent}
+            <Text allowFontScaling={false} style={this.style.monthText} accessibilityTraits='header'>
+              {this.props.month.toString(this.props.monthFormat)}
+            </Text>
             {indicator}
           </View>
           {rightArrow}
@@ -142,7 +133,16 @@ class CalendarHeader extends Component {
           <View style={this.style.week}>
             {this.props.weekNumbers && <Text allowFontScaling={false} style={this.style.dayHeader}></Text>}
             {weekDaysNames.map((day, idx) => (
-              <Text allowFontScaling={false} key={idx} accessible={false} style={this.style.dayHeader} numberOfLines={1} importantForAccessibility='no'>{day}</Text>
+              <Text 
+                allowFontScaling={false} 
+                key={idx} 
+                accessible={false} 
+                style={this.style.dayHeader} 
+                numberOfLines={1} 
+                importantForAccessibility='no'
+              >
+                {day}
+              </Text>
             ))}
           </View>
         }
