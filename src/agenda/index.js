@@ -12,10 +12,16 @@ import { VelocityTracker } from '../input';
 
 const HEADER_HEIGHT = 104;
 const KNOB_HEIGHT = 24;
-
 //Fallback when RN version is < 0.44
 const viewPropTypes = ViewPropTypes || View.propTypes;
 
+/**
+ * @description: Agenda component
+ * @extends: CalendarList
+ * @extendslink: docs/CalendarList
+ * @example: https://github.com/wix/react-native-calendars/blob/master/example/src/screens/agenda.js
+ * @gif: https://github.com/wix/react-native-calendars/blob/master/demo/agenda.gif
+ */
 export default class AgendaView extends Component {
 	static propTypes = {
 		// Specify theme properties to override specific styles for calendar parts. Default = {}

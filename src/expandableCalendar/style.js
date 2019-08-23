@@ -1,23 +1,26 @@
 import {StyleSheet, Platform} from 'react-native';
 import * as defaultStyle from '../style';
 
+
+const commons = require('./commons');
 const STYLESHEET_ID = 'stylesheet.expandable.main';
 
-export default function styleConstructor(theme={}) {
+export default function styleConstructor(theme = {}) {
   const appStyle = {...defaultStyle, ...theme};
+  
   return StyleSheet.create({
     containerShadow: {
       backgroundColor: appStyle.calendarBackground,
       ...Platform.select({
         ios: {
-          shadowColor: '#79838A',
-          shadowOpacity: 0.2,
-          shadowRadius: 2,
-          shadowOffset: {height: 6, width: 0},
+          shadowColor: '#858F96',
+          shadowOpacity: 0.25,
+          shadowRadius: 10,
+          shadowOffset: {height: 2, width: 0},
           zIndex: 99
         },
         android: {
-          elevation: 6
+          elevation: 3
         }
       })
     },
@@ -83,6 +86,8 @@ export default function styleConstructor(theme={}) {
     week: {
       marginTop: 7,
       marginBottom: 7,
+      paddingRight: 15,
+      paddingLeft: 15,
       flexDirection: 'row',
       justifyContent: 'space-around'
     },
@@ -97,9 +102,9 @@ export default function styleConstructor(theme={}) {
       bottom : 0
     },
     todayButton: {
-      width: 82, 
-      height: 28, 
-      borderRadius: 14, 
+      height: commons.isTablet ? 40 : 28, 
+      paddingHorizontal: commons.isTablet ? 20 : 12,
+      borderRadius: commons.isTablet ? 20 : 14,
       flexDirection: appStyle.todayButtonPosition === 'right' ? 'row-reverse' : 'row',
       justifyContent: 'center',
       alignItems: 'center',
@@ -118,8 +123,9 @@ export default function styleConstructor(theme={}) {
     },
     todayButtonText: {
       color: appStyle.todayButtonTextColor,
-      fontSize: 14, 
-      fontWeight: '600'
+      fontSize: commons.isTablet ? appStyle.todayButtonFontSize + 2 : appStyle.todayButtonFontSize, 
+      fontWeight: appStyle.todayButtonFontWeight,
+      fontFamily: appStyle.todayButtonFontFamily
     },
     todayButtonImage: {
       tintColor: appStyle.todayButtonTextColor, 
