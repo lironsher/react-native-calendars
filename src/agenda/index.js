@@ -277,6 +277,7 @@ export default class AgendaView extends Component {
 	}
 
 	toggleCalendar() {
+		console.log('toggleCalendar', this.state.calendarScrollable);
 		if (!this.state.calendarScrollable) {
 			this.openScrollPadToY(200);
 		} else {
@@ -371,6 +372,7 @@ export default class AgendaView extends Component {
 		this.calendar.scrollToDay(day, this.calendarOffset(), withAnimation);
 		this.setState({
 			selectedDay: parseDate(day),
+			calendarScrollable: false,
 		});
 
 		if (this.props.onDayChange) {
@@ -556,7 +558,7 @@ export default class AgendaView extends Component {
 							}
 							showWeekNumbers={this.props.showWeekNumbers}
 							calendarHeight={this.props.calendarHeight}
-							horizontal={this.props.horizontal}
+							// horizontal={this.props.horizontal}
 							pagingEnabled={this.props.pagingEnabled}
 						/>
 					</Animated.View>
