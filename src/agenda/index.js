@@ -222,8 +222,8 @@ export default class AgendaView extends Component {
 		const snapY = projectedY > maxY / 2 ? maxY : 0;
 		this.setScrollPadPosition(snapY, true);
 		if (snapY === 0) {
-			this.enableCalendarScrolling();
 		}
+		this.enableCalendarScrolling();
 	}
 
 	onVisibleMonthsChange(months) {

@@ -1,6 +1,6 @@
 {
   "name": "react-native-calendars",
-  "version": "1.32.7",
+  "version": "1.32.8",
   "main": "src/index.js",
   "description": "React Native Calendar Components",
   "scripts": {
