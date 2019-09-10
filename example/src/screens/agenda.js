@@ -43,8 +43,7 @@ export default class AgendaScreen extends Component {
 					// monthFormat={'yyyy'}
 					// theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
 					//renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
-					horizontal={true}
-					pagingEnabled={true}
+
 					//	showWeekHeader={true}
 				/>
 			</View>

@@ -280,6 +280,12 @@ export default class AgendaView extends Component {
 		console.log('toggleCalendar', this.state.calendarScrollable);
 		if (!this.state.calendarScrollable) {
 			this.openScrollPadToY(200);
+			this.setState({
+				calendarScrollable: true,
+			});
+			if (this.props.onCalendarToggled) {
+				this.props.onCalendarToggled(true);
+			}
 		} else {
 			this.setState({
 				calendarScrollable: false,
