@@ -69,7 +69,6 @@ export default class AgendaScreen extends Component {
 					}
 				}
 			}
-			//console.log(this.state.items);
 			const newItems = {};
 			Object.keys(this.state.items).forEach(key => {
 				newItems[key] = this.state.items[key];
@@ -78,7 +77,6 @@ export default class AgendaScreen extends Component {
 				items: newItems,
 			});
 		}, 1000);
-		// console.log(`Load Items for ${day.year}-${day.month}`);
 	}
 
 	renderItem(item) {

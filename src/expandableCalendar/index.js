@@ -168,11 +168,9 @@ class ExpandableCalendar extends Component {
 	scrollPage(next) {
 		if (this.props.horizontal) {
 			const d = parseDate(this.props.context.date);
-			console.log('scrollPage', next);
 			if (this.state.position === POSITIONS.OPEN) {
 				d.setDate(1);
 				d.addMonths(!next ? 1 : -1);
-				console.log('scrollPaged', d);
 			} else {
 				const { firstDay } = this.props;
 				let dayOfTheWeek = d.getDay();

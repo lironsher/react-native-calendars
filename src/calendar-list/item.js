@@ -59,7 +59,6 @@ class CalendarListItem extends Component {
 
 	render() {
 		const row = this.props.item;
-		console.log('render cl', row);
 		if (row.getTime) {
 			return (
 				<Calendar
