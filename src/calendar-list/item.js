@@ -31,7 +31,6 @@ class CalendarListItem extends Component {
 		if (this.props.onPressArrowLeft) {
 			this.props.onPressArrowLeft(_, monthClone);
 		} else if (this.props.scrollToMonth) {
-			console.log('isrtl', I18nManager.isRTL);
 			if (I18nManager.isRTL) {
 				monthClone.addMonths(1);
 			} else {
