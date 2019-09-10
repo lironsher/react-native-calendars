@@ -526,6 +526,7 @@ export default class AgendaView extends Component {
 									translateY: contentTranslate,
 								},
 							],
+							zIndex: 10,
 						}}
 					>
 						<CalendarList
